@@ -21,6 +21,7 @@ public class JulgamentoTeste {
 	// seja, cada método do @Test
 	// Nele é instanciado alguns participantes e um juiz
 	public void criaJuiz() {
+		// JHONATAN: CENÁRIO
 
 		this.juiz = new Juiz();
 		this.joao = new Participante("Joao");
@@ -34,9 +35,11 @@ public class JulgamentoTeste {
 	// O nome condiz com o que é testado no método
 	public void deveJulgarPrimeiroEultimoColocado() {
 
+		// JHONATAN: CENÁRIO
 		// Instanciação de um jogo
 		Jogo jogo = new Jogo("Derruba barreiras");
 
+		// JHONATAN: EXECUÇÃO
 		// adicionando resultados para cada participante
 		jogo.anota(new Resultado(joao, 90.0));
 		jogo.anota(new Resultado(pedro, 91.0));
@@ -51,17 +54,21 @@ public class JulgamentoTeste {
 		// Métrica do menor participante (joao)
 		double ultimoColocadoJogo = 90;
 
+		// JHONATAN: RESULTADOS
 		// Validando se os resultados do primeiro e ultimo colocados condizem com o
 		// inserido
 		Assert.assertEquals(vencedorJogo, juiz.getPrimeiroColocado(), 0.00001);
 		Assert.assertEquals(ultimoColocadoJogo, juiz.getUltimoColocado(), 0.00001);
 	}
 
+	// TODOS: RESULTADOS
+	// Nesse arquivo não é validado com o Assert.assertEquals, o resultado é
+	// validado se terá uma exceção lançada durante a execução
 	@Test(expected = RuntimeException.class)
-	// Nesse arquivo não é validado com o Asser.assertEquals, logo para ele o teste
-	// foi um sucesso já que não houve exceções.
 	public void naoDeveJulgarSemResultado() {
+		// TODOS: CENÁRIO
 		Jogo jogo = new CriadorDeJogo()
+				// TODOS: EXECUÇÃO
 				.para("Ca�a pe�as")
 				.constroi();
 

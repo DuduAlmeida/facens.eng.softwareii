@@ -19,6 +19,7 @@ public class JulgamentoTeste {
 	@Before
 	// O método cria juiz é realizado antes de cada teste unitário da classe, ou
 	// seja, cada método do @Test
+	// Nele é instanciado alguns participantes e um juiz
 	public void criaJuiz() {
 
 		this.juiz = new Juiz();
@@ -33,18 +34,25 @@ public class JulgamentoTeste {
 	// O nome condiz com o que é testado no método
 	public void deveJulgarPrimeiroEultimoColocado() {
 
+		// Instanciação de um jogo
 		Jogo jogo = new Jogo("Derruba barreiras");
 
+		// adicionando resultados para cada participante
 		jogo.anota(new Resultado(joao, 90.0));
 		jogo.anota(new Resultado(pedro, 91.0));
 		jogo.anota(new Resultado(katia, 93.0));
 		jogo.anota(new Resultado(maria, 94.0));
 
+		// Pedindo para o juiz julgar o jogo
 		juiz.julga(jogo);
 
+		// Métrica do maior participante (maria)
 		double vencedorJogo = 94;
+		// Métrica do menor participante (joao)
 		double ultimoColocadoJogo = 90;
 
+		// Validando se os resultados do primeiro e ultimo colocados condizem com o
+		// inserido
 		Assert.assertEquals(vencedorJogo, juiz.getPrimeiroColocado(), 0.00001);
 		Assert.assertEquals(ultimoColocadoJogo, juiz.getUltimoColocado(), 0.00001);
 	}

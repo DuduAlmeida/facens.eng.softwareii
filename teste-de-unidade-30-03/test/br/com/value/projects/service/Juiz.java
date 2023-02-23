@@ -24,15 +24,11 @@ public class Juiz {
 		}
 	}
 
-	// O nome não condiz com o realizado no método, um bom nome seria:
-	// getMaiorPontuacao
 	public double getPrimeiroColocado() {
 
 		return maisPontos;
 	}
 
-	// O nome não condiz com o realizado no método, um bom nome seria:
-	// getMenorPontuacao
 	public double getUltimoColocado() {
 
 		return menosPontos;

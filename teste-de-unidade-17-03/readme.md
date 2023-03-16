@@ -9,3 +9,5 @@ npm run test:specialChars
 npm run test:string
 npm run test:object
 ```
+
+Para ver os resultados, acesso a pasta ./resultados

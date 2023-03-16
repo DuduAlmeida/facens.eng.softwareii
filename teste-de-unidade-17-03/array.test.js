@@ -1,7 +1,7 @@
 const array = require("./array");
 
+//Feito por Eduardo:
 describe("functions array", () => {
-  //Feito por Daniel:
   test("should get property by value", () => {
     expect(
       array.toArrayOfProperty(
@@ -14,7 +14,6 @@ describe("functions array", () => {
     ).toEqual([undefined]);
   });
 
-  //Feito por Enrico:
   test("should transform array in list of string", () => {
     expect(array.toStringList([1, 2, 3, 4, 5])).toBe("1,2,3,4,5");
   });

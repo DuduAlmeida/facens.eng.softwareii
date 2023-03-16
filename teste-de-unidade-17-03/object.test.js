@@ -1,13 +1,12 @@
 const object = require("./object");
 
+//Feito por Eduardo:
 describe("functions object", () => {
-  //Feito por Jhonatan:
   test("should have an empty object", () => {
     expect(object.isEmpty({})).toBeTruthy();
     expect(object.isEmpty({ key: "value" })).toBeFalsy();
   });
 
-  //Feito por Eduardo:
   test("should return key when find by value", () => {
     expect(
       object.getKeyByValue(

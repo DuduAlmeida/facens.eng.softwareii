@@ -5,6 +5,9 @@
   "main": "array.js",
   "scripts": {
     "test:array": "jest array.test.js",
+    "test:formatters": "jest formatters.test.js",
+    "test:specialChars": "jest specialChars.test.js",
+    "test:string": "jest string.test.js",
     "test:object": "jest object.test.js"
   },
   "author": "Dudu",

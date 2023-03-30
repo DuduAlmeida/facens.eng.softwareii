@@ -11,6 +11,7 @@ export class CourseStudent {
 
   public id: string = generateUuid();
   public isFinished: boolean = false;
+  public testAverage: number = 0;
   private _tests: Test[] = [];
 
   get tests(): Test[] {

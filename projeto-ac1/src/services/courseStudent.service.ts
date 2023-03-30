@@ -1,11 +1,12 @@
 import { DataBase } from "../data/index";
 import { Test } from "../models/Prova.model";
 import { CourseStudent } from "../models/CursoEstudante.model";
+import { Course } from "src/models/Curso.model";
 
 export class StudentCourseService {
   constructor(protected readonly db: DataBase) {}
 
-  public chooseCourse(studentId: string, courseId: string): CourseStudent {
+  public startCourse(studentId: string, courseId: string): CourseStudent {
     // const student = this.db.getStudentById(studentId);
     // const course = this.db.getCourseById(courseId);
     // if (!course) throw new Error("Curso não encontrado");
@@ -14,6 +15,11 @@ export class StudentCourseService {
     // this.db.coursesStudent.push(courseVinculated);
     // return courseVinculated;
   }
+
+  public chooseAditionalCourses(
+    courses: Course[],
+    studentId: string
+  ): CourseStudent {}
 
   public makeTest(
     studentId: string,

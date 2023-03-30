@@ -5,10 +5,10 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc -b",
+    "lint": "eslint --config .eslintrc .",
     "test": "jest --forceExit",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
-    "lint": "eslint --config .eslintrc .",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand"
   },
   "devDependencies": {
@@ -30,5 +30,8 @@
   "engines": {
     "node": ">=18.0.0"
   },
-  "types": "dist/index.d.ts"
+  "types": "dist/index.d.ts",
+  "dependencies": {
+    "uuid": "9.0.0"
+  }
 }

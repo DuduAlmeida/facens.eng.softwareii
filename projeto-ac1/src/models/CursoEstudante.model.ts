@@ -10,6 +10,7 @@ export class CourseStudent {
   constructor(public course: Course, public student: Student) {}
 
   public id: string = generateUuid();
+  public isFinished: boolean = false;
   private _tests: Test[] = [];
 
   get tests(): Test[] {

@@ -1,4 +1,4 @@
-import { generateUuid } from "src/utils/uuid";
+import { generateUuid } from "../utils/uuid";
 
 export class TopicoForum {
   constructor() {}

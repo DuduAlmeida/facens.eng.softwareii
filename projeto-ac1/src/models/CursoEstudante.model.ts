@@ -2,7 +2,7 @@ import { Test } from "./Prova.model";
 import { Course } from "./Curso.model";
 import { Student } from "./Estudante.model";
 
-import { generateUuid } from "src/utils/uuid";
+import { generateUuid } from "../utils/uuid";
 
 export type InscritionType = "BASIC" | "PREMIUM";
 

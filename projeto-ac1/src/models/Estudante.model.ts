@@ -1,6 +1,6 @@
 import { generateUuid } from "../utils/uuid";
 export class Student {
-  constructor(public nome: string, public inscricao) {}
+  constructor(public name: string, public subscription) {}
 
   public id: string = generateUuid();
 }

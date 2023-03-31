@@ -6,8 +6,8 @@ import { CourseStudent } from "src/models/CursoEstudante.model";
 export class DataBase {
   public readonly courses: Course[] = [];
   public readonly students: Student[] = [];
+  public coursesStudent: CourseStudent[] = [];
   public readonly topicosForum: TopicoForum[] = [];
-  public readonly coursesStudent: CourseStudent[] = [];
 
   public getStudentById(id: string): Student | undefined {
     return !!this.students
@@ -21,11 +21,30 @@ export class DataBase {
       : undefined;
   }
 
-  public getStudentCourse(studentId: string, courseId: string): CourseStudent {
-    const [courseStudent] = this.coursesStudent.filter(
+  public setStudent(payload: Student): Student {
+    const indexToUpdate = this.students.findIndex(
+      (s: Student) => s?.id === payload.id
+    );
+
+    return (this.students[indexToUpdate] = payload);
+  }
+
+  public setCourseStudent(payload: CourseStudent): CourseStudent {
+    const indexToUpdate = this.coursesStudent.findIndex(
+      (s: CourseStudent) => s?.id === payload.id
+    );
+
+    return (this.coursesStudent[indexToUpdate] = payload);
+  }
+
+  public getStudentCourse(
+    studentId: string,
+    courseId: string
+  ): CourseStudent | undefined {
+    const courseStudents = this.coursesStudent.filter(
       (item) => item.student.id === studentId && item.course.id === courseId
     );
 
-    return courseStudent;
+    return courseStudents.length >= 0 ? courseStudents[0] : undefined;
   }
 }

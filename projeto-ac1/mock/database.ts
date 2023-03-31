@@ -1,6 +1,6 @@
-import { DataBase } from "../src/data/index";
 import { MOCKED_COURSES } from "../mock/courses";
 import { MOCKED_STUDENTS } from "../mock/students";
+import { DataBase } from "../src/data/index";
 
 export const getDatabaseFilled = () => {
   const db = new DataBase();

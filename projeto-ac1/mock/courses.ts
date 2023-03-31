@@ -17,4 +17,4 @@ export const MOCKED_COURSES = [
   new Course("Programção norte-americana", "André", 3),
 ];
 
-export const MOCKED_COURSE = MOCKED_COURSES[4];
+export const MOCKED_COURSE = MOCKED_COURSES[9];

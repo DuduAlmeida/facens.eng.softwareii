@@ -3,5 +3,5 @@ export class Student {
   constructor(public name: string, public subscription) {}
 
   public id: string = generateUuid();
-  public countCoursesAvailables: number = 3;
+  public countAvailableCourses: number = 0;
 }

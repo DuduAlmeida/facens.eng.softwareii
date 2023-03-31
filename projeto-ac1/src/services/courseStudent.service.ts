@@ -101,7 +101,6 @@ export class StudentCourseService {
     context: string = ""
   ): StudentCourseResponse {
     const student = this.db.getStudentById(studentId);
-    const coursesToAdd = [courses].flat();
 
     if (!student) return { error: true, message: "Estudante não encontrado" };
 
@@ -120,9 +119,6 @@ export class StudentCourseService {
         error: true,
         message: "Usuário não tem cursos adicionais disponíveis",
       };
-
-    // console.log("courses.length", courses.length);
-    // console.log("student.countAvailableCourses", student.countAvailableCourses);
 
     const hasLessCoursesThatNeed =
       student.countAvailableCourses > courses.length;

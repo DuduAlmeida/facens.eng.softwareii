@@ -4,14 +4,18 @@ public class Participante {
 
 	private int id;
 	private String nome;
-	
+	private String email;
+
 	public Participante(String nome) {
-		this(0, nome);
+		this.id = 0;
+		this.nome = nome;
+		this.email = "";
 	}
 
-	public Participante(int id, String nome) {
+	public Participante(int id, String nome, String email) {
 		this.id = id;
 		this.nome = nome;
+		this.email = email;
 	}
 
 	public int getId() {
@@ -20,6 +24,10 @@ public class Participante {
 
 	public String getNome() {
 		return nome;
+	}
+
+	public String getEmail() {
+		return email;
 	}
 
 	@Override
@@ -50,5 +58,4 @@ public class Participante {
 		return true;
 	}
 
-	
 }

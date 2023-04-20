@@ -12,6 +12,18 @@ public class Participante {
 		this.email = "";
 	}
 
+	public Participante(String nome, String email) {
+		this.id = 0;
+		this.nome = nome;
+		this.email = email;
+	}
+
+	public Participante(int id, String nome) {
+		this.id = id;
+		this.nome = nome;
+		this.email = "";
+	}
+
 	public Participante(int id, String nome, String email) {
 		this.id = id;
 		this.nome = nome;

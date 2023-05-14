@@ -1,7 +1,9 @@
-import array from "../utils/array";
 import { DataBase } from "../data";
 import { Student } from "../models/Estudante.model";
-import { CreateUpdateStudentPayload } from "../payloads/Student.payloads";
+import {
+  CreateStudentPayload,
+  UpdateStudentPayload,
+} from "../payloads/Student.payloads";
 
 type StudentResponse = {
   data?: Student;
@@ -33,10 +35,10 @@ export class StudentService {
   public async getAll(): Promise<ManyStudentsResponse> {
     const data = this.db.students;
 
-    const error = !data && !array.isValid(data);
+    const error = !data;
     const message = error
-      ? "Erro ao pegar os alunos"
-      : "Alunos pego com sucesso";
+      ? "Erro ao listar os alunos"
+      : "Alunos listados com sucesso";
 
     return {
       error,
@@ -45,9 +47,7 @@ export class StudentService {
     };
   }
 
-  public async create(
-    payload: CreateUpdateStudentPayload
-  ): Promise<StudentResponse> {
+  public async create(payload: CreateStudentPayload): Promise<StudentResponse> {
     const studentCreated = new Student(payload?.name, payload?.subscription);
 
     if (!studentCreated.name)
@@ -55,7 +55,9 @@ export class StudentService {
 
     const data = this.db.setStudent(studentCreated);
     const error = !data;
-    const message = error ? "Erro ao pegar o aluno" : "Aluno pego com sucesso";
+    const message = error
+      ? "Erro ao criar o aluno"
+      : "Aluno criado com sucesso";
 
     return {
       data,
@@ -64,7 +66,7 @@ export class StudentService {
     };
   }
 
-  public async update(studentId: string, payload: CreateUpdateStudentPayload) {
+  public async update(studentId: string, payload: UpdateStudentPayload) {
     let studentUpdated = this.db.getStudentById(studentId);
 
     if (!studentUpdated)
@@ -76,7 +78,9 @@ export class StudentService {
 
     const data = this.db.setStudent(studentUpdated);
     const error = !data;
-    const message = error ? "Erro ao pegar o aluno" : "Aluno pego com sucesso";
+    const message = error
+      ? "Erro ao atualizar o aluno"
+      : "Aluno atualizado com sucesso";
 
     return {
       data,
@@ -86,10 +90,15 @@ export class StudentService {
   }
 
   public async delete(studentId: string): Promise<StudentResponse> {
+    const response = await this.getOne(studentId);
+
+    if (response.error) return { ...response, message: "Aluno não encontrado" };
+
     this.db.removeStudent(studentId);
 
     return {
-      error: true,
+      error: false,
+      message: "Aluno removido com sucesso",
     };
   }
 }

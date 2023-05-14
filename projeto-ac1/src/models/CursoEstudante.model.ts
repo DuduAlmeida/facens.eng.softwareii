@@ -4,7 +4,8 @@ import { Student } from "./Estudante.model";
 
 import { generateUuid } from "../utils/uuid";
 
-export type InscritionType = "BASIC" | "PREMIUM";
+export type SubscriptionType = "BASIC" | "PREMIUM";
+export const SubscriptionState = { BASIC: "BASIC", PREMIUM: "PREMIUM" };
 
 export class CourseStudent {
   constructor(public course: Course, public student: Student) {}

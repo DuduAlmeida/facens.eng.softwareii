@@ -104,14 +104,6 @@ export class StudentCourseService {
 
     if (!student) return { error: true, message: "Estudante não encontrado" };
 
-    if ("Daniel" == context) {
-      console.log(
-        "DanichooseAditionalCourses",
-        student.countAvailableCourses,
-        courses.length
-      );
-    }
-
     const canChooseAdditionalCourses = student.countAvailableCourses > 1;
 
     if (!canChooseAdditionalCourses)

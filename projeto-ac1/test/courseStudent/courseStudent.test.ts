@@ -72,7 +72,7 @@ describe("CourseStudent", () => {
       expect(error).toBe(false);
 
       for (const courseAdded of coursesChoosedByStudent) {
-        const isCourseAdded = !!db.getStudentCourse(student.id, courseAdded.id);
+        const isCourseAdded = !!db.getCourseStudent(student.id, courseAdded.id);
         expect(isCourseAdded).toBe(true);
       }
     });

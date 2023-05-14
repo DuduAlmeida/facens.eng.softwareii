@@ -33,7 +33,7 @@ export class StudentCourseService {
     courseId: string,
     grade: number
   ): StudentCourseResponse {
-    const studentCourse = this.db.getStudentCourse(studentId, courseId);
+    const studentCourse = this.db.getCourseStudent(studentId, courseId);
 
     if (!studentCourse)
       return { error: true, message: "Curso não vinculado ao usuário" };
@@ -58,7 +58,7 @@ export class StudentCourseService {
     studentId: string,
     courseId: string
   ): StudentCourseResponse {
-    const studentCourse = this.db.getStudentCourse(studentId, courseId);
+    const studentCourse = this.db.getCourseStudent(studentId, courseId);
 
     if (!studentCourse)
       return { error: true, message: "Curso não vinculado ao usuário" };

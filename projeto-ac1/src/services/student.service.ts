@@ -33,8 +33,6 @@ export class StudentService {
   public async getAll(): Promise<ManyStudentsResponse> {
     const data = this.db.students;
 
-    console.log("Os alunos", data);
-
     const error = !data && !array.isValid(data);
     const message = error
       ? "Erro ao pegar os alunos"
@@ -52,6 +50,9 @@ export class StudentService {
   ): Promise<StudentResponse> {
     const studentCreated = new Student(payload?.name, payload?.subscription);
 
+    if (!studentCreated.name)
+      return { error: true, message: "Nome do aluno é inválido" };
+
     const data = this.db.setStudent(studentCreated);
     const error = !data;
     const message = error ? "Erro ao pegar o aluno" : "Aluno pego com sucesso";
@@ -66,7 +67,8 @@ export class StudentService {
   public async update(studentId: string, payload: CreateUpdateStudentPayload) {
     let studentUpdated = this.db.getStudentById(studentId);
 
-    if (!studentUpdated) return void 0;
+    if (!studentUpdated)
+      return { error: true, message: "Aluno não encontrado" };
 
     if (payload?.name) studentUpdated.name = payload.name;
     if (payload?.subscription)

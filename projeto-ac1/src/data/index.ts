@@ -6,7 +6,7 @@ import { TopicoForum } from "../models/TopicoForum.model";
 import { CourseStudent } from "../models/CursoEstudante.model";
 
 export class DataBase {
-  public readonly courses: Course[] = [];
+  public courses: Course[] = [];
   public students: Student[] = [];
   public coursesStudent: CourseStudent[] = [];
   public readonly topicosForum: TopicoForum[] = [];
@@ -46,8 +46,29 @@ export class DataBase {
 
   public getCourseById(id: string): Course | undefined {
     return !!this.courses
-      ? this.courses.find((s: Course) => !!s?.id && s?.id === id)
+      ? this.courses.find((c: Course) => !!c?.id && c?.id === id)
       : undefined;
+  }
+
+  public setCourse(payload: Course): Course {
+    const indexToUpdate = this.courses.findIndex(
+      (c: Course) => c?.id === payload.id
+    );
+
+    return (this.courses[indexToUpdate] = payload);
+  }
+
+  public setManyCourses(payload: Course[]): Course[] {
+    this.courses = array.isValid(payload) ? payload : this.courses;
+
+    return this.courses;
+  }
+
+  public removeCourse(id: string): Course[] {
+    const indexToUpdate = this.courses.findIndex((c: Course) => c?.id === id);
+    const listUpdated = removeByIndex(this.courses, indexToUpdate);
+
+    return this.setManyCourses(listUpdated);
   }
 
   // #endregion Courses Queries

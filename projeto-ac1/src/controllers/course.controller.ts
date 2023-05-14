@@ -1,17 +1,15 @@
 import { Request, Response, NextFunction } from "express";
 import { DataBase } from "../data";
-import { StudentService } from "../services/student.service";
-import { CreateUpdateStudentPayload } from "../payloads/Student.payloads";
+import { CourseService } from "../services/course.service";
+import { CreateUpdateCoursePaylod } from "../payloads/Course.payloads";
 
-export class StudentController {
-  protected service: StudentService;
+export class CourseController {
+  protected service: CourseService;
   constructor(protected readonly db: DataBase) {
-    this.service = new StudentService(db);
+    this.service = new CourseService(db);
   }
 
   public async getAll(req: Request, res: Response, next: NextFunction) {
-    this.service = new StudentService(this.db);
-
     const response = await this.service.getAll();
 
     return res.status(response?.error ? 401 : 200).json(response);
@@ -28,7 +26,7 @@ export class StudentController {
   public async update(req: Request, res: Response, next: NextFunction) {
     let id: string = req.params.id;
 
-    const payload = new CreateUpdateStudentPayload(req.body);
+    const payload = new CreateUpdateCoursePaylod(req.body);
 
     const response = await this.service.update(id, payload);
 
@@ -43,7 +41,7 @@ export class StudentController {
   }
 
   public async create(req: Request, res: Response, next: NextFunction) {
-    const payload = new CreateUpdateStudentPayload(req.body);
+    const payload = new CreateUpdateCoursePaylod(req.body);
 
     const response = await this.service.create(payload);
 

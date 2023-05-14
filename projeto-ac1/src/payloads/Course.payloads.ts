@@ -1,4 +1,4 @@
-export class CreateCoursePaylod {
+export class CreateUpdateCoursePaylod {
   public name: string = "";
   public teacher: string = "";
   public countTests: number = 1;

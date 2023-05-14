@@ -1,14 +1,19 @@
 import { Request, Response, NextFunction } from "express";
 import { DataBase } from "../data";
-import { StudentService } from "src/services/student.service";
-import { CreateUpdateStudentPayload } from "src/payloads/Student.payloads";
+import { StudentService } from "../services/student.service";
+import { CreateUpdateStudentPayload } from "../payloads/Student.payloads";
 
 export class StudentController {
-  constructor(protected readonly db: DataBase) {}
-
-  protected readonly service: StudentService = new StudentService(this.db);
+  protected service: StudentService;
+  constructor(protected readonly db: DataBase) {
+    this.service = new StudentService(db);
+  }
 
   public async getAll(req: Request, res: Response, next: NextFunction) {
+    console.log("Olha o SERVIÇO", this.service);
+
+    this.service = new StudentService(this.db);
+
     const response = await this.service.getAll();
 
     return res.status(response?.error ? 401 : 200).json(response);

@@ -20,7 +20,7 @@ export class StudentService {
 
   public async getOne(studentId: string): Promise<StudentResponse> {
     const data = this.db.getStudentById(studentId);
-    const error = !!data;
+    const error = !data;
     const message = error ? "Erro ao pegar o aluno" : "Aluno pego com sucesso";
 
     return {
@@ -32,7 +32,10 @@ export class StudentService {
 
   public async getAll(): Promise<ManyStudentsResponse> {
     const data = this.db.students;
-    const error = !!data && array.isValid(data);
+
+    console.log("Os alunos", data);
+
+    const error = !data && !array.isValid(data);
     const message = error
       ? "Erro ao pegar os alunos"
       : "Alunos pego com sucesso";
@@ -50,7 +53,7 @@ export class StudentService {
     const studentCreated = new Student(payload?.name, payload?.subscription);
 
     const data = this.db.setStudent(studentCreated);
-    const error = !!data;
+    const error = !data;
     const message = error ? "Erro ao pegar o aluno" : "Aluno pego com sucesso";
 
     return {
@@ -70,7 +73,7 @@ export class StudentService {
       studentUpdated.subscription = payload.subscription;
 
     const data = this.db.setStudent(studentUpdated);
-    const error = !!data;
+    const error = !data;
     const message = error ? "Erro ao pegar o aluno" : "Aluno pego com sucesso";
 
     return {

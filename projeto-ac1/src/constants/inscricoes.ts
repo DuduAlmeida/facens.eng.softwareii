@@ -1,4 +1,4 @@
-import { InscritionType } from "src/models/CursoEstudante.model";
+import { InscritionType } from "../models/CursoEstudante.model";
 
 export const SUBSCRIPTION_TYPE: { [key: string]: InscritionType } = {
   BASIC: "BASIC",

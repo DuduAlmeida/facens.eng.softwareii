@@ -3,7 +3,7 @@ import { Course } from "../models/Curso.model";
 import { removeByIndex } from "../utils/databse";
 import { Student } from "../models/Estudante.model";
 import { TopicoForum } from "../models/TopicoForum.model";
-import { CourseStudent } from "src/models/CursoEstudante.model";
+import { CourseStudent } from "../models/CursoEstudante.model";
 
 export class DataBase {
   public readonly courses: Course[] = [];

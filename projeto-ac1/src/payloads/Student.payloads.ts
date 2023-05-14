@@ -1,5 +1,5 @@
-import { SUBSCRIPTION_TYPE_LIST } from "src/constants/inscricoes";
-import { InscritionType } from "src/models/CursoEstudante.model";
+import { SUBSCRIPTION_TYPE_LIST } from "../constants/inscricoes";
+import { InscritionType } from "../models/CursoEstudante.model";
 
 export class CreateUpdateStudentPayload {
   public name: string = "";

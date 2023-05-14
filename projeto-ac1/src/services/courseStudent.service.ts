@@ -1,7 +1,7 @@
 import { DataBase } from "../data/index";
 import { Test } from "../models/Prova.model";
 import { CourseStudent } from "../models/CursoEstudante.model";
-import { Course } from "src/models/Curso.model";
+import { Course } from "../models/Curso.model";
 
 type StudentCourseResponse = {
   data?: CourseStudent;

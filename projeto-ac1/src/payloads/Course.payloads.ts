@@ -1,7 +1,7 @@
 export class CreateUpdateCoursePaylod {
   public name: string = "";
   public teacher: string = "";
-  public countTests: number = 1;
+  public countTests: number;
 
   constructor(object?: any) {
     this.name = String(object?.name);

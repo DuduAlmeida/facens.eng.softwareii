@@ -1,7 +1,7 @@
 import array from "../utils/array";
 import { DataBase } from "../data";
 import { Course } from "../models/Curso.model";
-import { CreateUpdateCoursePaylod } from "src/payloads/Course.payloads";
+import { CreateUpdateCoursePaylod } from "../../src/payloads/Course.payloads";
 
 type CourseResponse = {
   data?: Course;
@@ -34,8 +34,8 @@ export class CourseService {
     const data = this.db.courses;
     const error = !data && !array.isValid(data);
     const message = error
-      ? "Erro ao pegar os cursos"
-      : "Cursos pego com sucesso";
+      ? "Erro ao listar os cursos"
+      : "Cursos listados com sucesso";
 
     return {
       error,
@@ -53,6 +53,8 @@ export class CourseService {
       payload?.countTests
     );
 
+    if (!courseCreated.countTests) courseCreated.countTests = 1;
+
     if (!courseCreated.name)
       return { error: true, message: "Nome do curso é inválido" };
     if (courseCreated.countTests < 1)
@@ -62,7 +64,9 @@ export class CourseService {
 
     const data = this.db.setCourse(courseCreated);
     const error = !data;
-    const message = error ? "Erro ao pegar o curso" : "Curso pego com sucesso";
+    const message = error
+      ? "Erro ao criar o curso"
+      : "Curso criado com sucesso";
 
     return {
       data,
@@ -82,7 +86,9 @@ export class CourseService {
 
     const data = this.db.setCourse(courseUpdated);
     const error = !data;
-    const message = error ? "Erro ao pegar o curso" : "Curso pego com sucesso";
+    const message = error
+      ? "Erro ao atualizar o curso"
+      : "Curso atualizado com sucesso";
 
     return {
       data,
@@ -92,10 +98,14 @@ export class CourseService {
   }
 
   public async delete(studentId: string): Promise<CourseResponse> {
+    const response = await this.getOne(studentId);
+
+    if (response.error) return { ...response, message: "Curso não encontrado" };
     this.db.removeCourse(studentId);
 
     return {
-      error: true,
+      error: false,
+      message: "Curso removido com sucesso",
     };
   }
 }

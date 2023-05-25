@@ -1,7 +1,7 @@
 import { getCourseService } from "./utils";
 import { SubscriptionState } from "../../src/models/CursoEstudante.model";
 import { MOCKED_COURSE, MOCKED_COURSES } from "../../mock/courses";
-import { CreateUpdateCoursePaylod } from "../../src/payloads/Course.payloads";
+import { CreateUpdateCourseFactory } from "../../src/factory/Course.payloads";
 
 describe("course", () => {
   describe("getOne", () => {
@@ -45,7 +45,7 @@ describe("course", () => {
     it("Deve retornar os valores esperados ao criar um curso", async () => {
       const { service } = getCourseService();
 
-      const coursePayload = new CreateUpdateCoursePaylod({
+      const coursePayload = new CreateUpdateCourseFactory({
         name: "Eng Software II",
         teacher: "Leles",
         countTests: 47,
@@ -65,7 +65,7 @@ describe("course", () => {
     it("Deve retornar erro ao tentar criar curso sem enviar um nome", async () => {
       const { service } = getCourseService();
 
-      const coursePayload = new CreateUpdateCoursePaylod({
+      const coursePayload = new CreateUpdateCourseFactory({
         name: "",
       });
 
@@ -80,7 +80,7 @@ describe("course", () => {
     it("Deve adicionar os valores padrão, nos campos opicionais, ao tentar criar um curso", async () => {
       const { service } = getCourseService();
 
-      const coursePayload = new CreateUpdateCoursePaylod({
+      const coursePayload = new CreateUpdateCourseFactory({
         name: "Andreia THE BOSS",
       });
 
@@ -100,7 +100,7 @@ describe("course", () => {
     it("Deve retornar erro ao tentar atualizar curso inválido", async () => {
       const { service } = getCourseService();
 
-      const coursePayload = new CreateUpdateCoursePaylod({
+      const coursePayload = new CreateUpdateCourseFactory({
         name: "",
       });
 
@@ -115,7 +115,7 @@ describe("course", () => {
     it("Deve atualizar somente o nome do curso, quando passado somente ele no payload", async () => {
       const { service } = getCourseService();
 
-      const coursePayload = new CreateUpdateCoursePaylod({
+      const coursePayload = new CreateUpdateCourseFactory({
         name: "King Julian",
       });
 

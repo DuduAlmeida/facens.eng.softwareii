@@ -93,11 +93,11 @@ export default function UserForm() {
         <form
           id="user-form"
           onSubmit={handleSubmit(onSubmit)}
-          className="w-full grid grid-rows-1 grid-flow-col gap-8 px-12 mt-16"
+          className="w-full grid grid-rows-2 grid-columns-2 grid-flow-col gap-8 px-12 mt-16"
         >
           <div className="mb-4 ">
             <label htmlFor="name" className="block mb-2">
-              Nome
+              Nome do Curso
             </label>
             <input
               type="text"
@@ -111,21 +111,36 @@ export default function UserForm() {
             )}
           </div>
 
-          <div className="mb-4">
-            <label htmlFor="subscription" className="block mb-2">
-              Assinatura
+          <div className="mb-4 ">
+            <label htmlFor="name" className="block mb-2">
+              Quantidade de provas
             </label>
-            <select
-              id="subscription"
-              {...register("subscription")}
+            <input
+              type="number"
+              id="countTests"
+              placeholder="Ex: 2"
+              {...register("countTests")}
               className="w-full border border-gray-300 rounded p-2"
-            >
-              <option value="" disabled selected>
-                Selecione
-              </option>
-              <option value="BASIC">BASIC</option>
-              <option value="PREMIUM">PREMIUM</option>
-            </select>
+            />
+            {errors.countTests && (
+              <span className="text-red-500">{errors.countTests.message}</span>
+            )}
+          </div>
+
+          <div className="mb-4 ">
+            <label htmlFor="name" className="block mb-2">
+              Professor
+            </label>
+            <input
+              type="text"
+              id="teacher"
+              placeholder="Ex: Leles"
+              {...register("teacher")}
+              className="w-full border border-gray-300 rounded p-2"
+            />
+            {errors.teacher && (
+              <span className="text-red-500">{errors.teacher.message}</span>
+            )}
           </div>
         </form>
 

@@ -38,7 +38,7 @@ export default function UserForm() {
 
   const onSubmit = (formData) => {
     const submitType = isEdit ? "put" : "post";
-    const endpoint = "student/{id}".replace("{id}", id);
+    const endpoint = "course{id}".replace("{id}", !!id ? "/" + id : "");
 
     api[submitType](endpoint, formData)
       .then((response) => {

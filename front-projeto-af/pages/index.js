@@ -6,7 +6,7 @@ import styles from "../styles/Home.module.css";
 export default function Home() {
   const router = useRouter();
   const cardList = [
-    { title: "Usuários", path: "/users" },
+    { title: "Alunos", path: "/students" },
     { title: "Cursos", path: "/courses" },
   ];
 

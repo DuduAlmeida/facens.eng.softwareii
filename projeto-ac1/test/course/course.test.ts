@@ -1,7 +1,10 @@
 import { getCourseService } from "./utils";
 import { SubscriptionState } from "../../src/models/CursoEstudante.model";
 import { MOCKED_COURSE, MOCKED_COURSES } from "../../mock/courses";
-import { CreateUpdateCourseFactory } from "../../src/factory/Course.payloads";
+import {
+  CreateCourseFactory,
+  UpdateCourseFactory,
+} from "../../src/factory/Course.payloads";
 
 describe("course", () => {
   describe("getOne", () => {
@@ -45,7 +48,7 @@ describe("course", () => {
     it("Deve retornar os valores esperados ao criar um curso", async () => {
       const { service } = getCourseService();
 
-      const coursePayload = new CreateUpdateCourseFactory({
+      const coursePayload = new CreateCourseFactory({
         name: "Eng Software II",
         teacher: "Leles",
         countTests: 47,
@@ -65,9 +68,9 @@ describe("course", () => {
     it("Deve retornar erro ao tentar criar curso sem enviar um nome", async () => {
       const { service } = getCourseService();
 
-      const coursePayload = new CreateUpdateCourseFactory({
+      const coursePayload = new CreateCourseFactory({
         name: "",
-      });
+      } as any);
 
       const response = await service.create(coursePayload);
 
@@ -80,14 +83,15 @@ describe("course", () => {
     it("Deve adicionar os valores padrão, nos campos opicionais, ao tentar criar um curso", async () => {
       const { service } = getCourseService();
 
-      const coursePayload = new CreateUpdateCourseFactory({
-        name: "Andreia THE BOSS",
-      });
+      const coursePayload = new CreateCourseFactory({
+        name: "Curso top",
+        teacher: "Andreia THE BOSS",
+      } as any);
 
       const response = await service.create(coursePayload);
 
-      expect(response.error).toBeFalsy();
       expect(response.message).toBe("Curso criado com sucesso");
+      expect(response.error).toBeFalsy();
 
       expect(!!response.data?.id).toBeTruthy();
       expect(response.data?.name).toBe(coursePayload.name);
@@ -100,7 +104,7 @@ describe("course", () => {
     it("Deve retornar erro ao tentar atualizar curso inválido", async () => {
       const { service } = getCourseService();
 
-      const coursePayload = new CreateUpdateCourseFactory({
+      const coursePayload = new UpdateCourseFactory({
         name: "",
       });
 
@@ -115,7 +119,7 @@ describe("course", () => {
     it("Deve atualizar somente o nome do curso, quando passado somente ele no payload", async () => {
       const { service } = getCourseService();
 
-      const coursePayload = new CreateUpdateCourseFactory({
+      const coursePayload = new UpdateCourseFactory({
         name: "King Julian",
       });
 

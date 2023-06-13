@@ -5,11 +5,14 @@ import {
 
 describe("CreateCourseFactory", () => {
   test("should initialize with correct values", () => {
+    //CENÁRIO
     const factory = new CreateCourseFactory({
       name: "Course Name",
       teacher: "Teacher Name",
       countTests: 10,
     });
+
+    //RESULTADOS
     expect(factory.name).toBe("Course Name");
     expect(factory.teacher).toBe("Teacher Name");
     expect(factory.countTests).toBe(10);

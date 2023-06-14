@@ -54,15 +54,24 @@ export class CourseService {
       payload?.countTests
     );
 
-    if (!courseCreated.countTests) courseCreated.countTests = 1;
+    if (!courseCreated.countTests) {
+      // 1
+      courseCreated.countTests = 1; // 2
+    }
+    if (!courseCreated.name) {
+      //3
+      return { error: true, message: "Nome do curso é inválido" }; //4
+    }
+    if (courseCreated.countTests < 1) {
+      //5
+      return { error: true, message: "Quantidade de provas inválidas" }; //6
+    }
+    if (!courseCreated.teacher) {
+      //7
+      return { error: true, message: "Nome do professor inválido" }; //8
+    }
 
-    if (!courseCreated.name)
-      return { error: true, message: "Nome do curso é inválido" };
-    if (courseCreated.countTests < 1)
-      return { error: true, message: "Quantidade de provas inválidas" };
-    if (!courseCreated.teacher)
-      return { error: true, message: "Nome do professor inválido" };
-
+    //9
     const data = this.db.setCourse(courseCreated);
     const error = !data;
     const message = error
